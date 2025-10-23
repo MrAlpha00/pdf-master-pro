@@ -1,0 +1,154 @@
+Build me a full-stack All-in-One PDF Tools app called “PDF Master Pro”, using Vite + React + TypeScript + TailwindCSS for the frontend and Node.js (Express) for backend API routes. The app will have 6 main feature sections with multiple tools inside, performing both offline and API-based PDF operations.
+
+🔹 Project Requirements
+
+Modern, fast, mobile-responsive UI with TailwindCSS and shadcn-ui.
+
+Modular folder structure: /client for frontend (Vite + React + TS) and /server for backend (Node + Express).
+
+Auto-detect online/offline mode. Use local modules when offline, and online APIs when complex conversions are needed.
+
+Use pdf-lib, jspdf, pdfjs-dist, browser-image-compression, and tesseract.js for offline tasks.
+
+Use CloudConvert, PDF.co, or similar free APIs for DOCX/PPTX/XLSX to/from PDF conversions and OCR enhancement when online.
+
+All tools should have a simple 2-step flow:
+1️⃣ Upload or select file
+2️⃣ Perform action → Show progress → Download or Share result
+
+🔹 Sections and Tools
+1. Organize PDF (Basic)
+
+Merge PDFs
+
+Split PDF
+
+Remove pages
+
+Extract pages
+
+2. Organize PDF (Advanced)
+
+Scan to PDF (use device camera or file upload)
+
+Optimize PDF (compress, remove unused fonts/images)
+
+Compress PDF
+
+Repair PDF (try to recover corrupted structure)
+
+OCR PDF (extract text from images using tesseract.js)
+
+3. Convert to PDF
+
+JPG → PDF
+
+WORD → PDF
+
+POWERPOINT → PDF
+
+EXCEL → PDF
+
+HTML → PDF
+
+4. Convert from PDF
+
+PDF → JPG
+
+PDF → WORD
+
+PDF → POWERPOINT
+
+PDF → EXCEL
+
+PDF → PDF/A
+
+5. Edit PDF
+
+Rotate PDF
+
+Add page numbers
+
+Add watermark
+
+Crop PDF
+
+Edit text/content in PDF (where possible)
+
+6. PDF Security
+
+Unlock PDF (remove password)
+
+Protect PDF (add password)
+
+Sign PDF (draw or image signature)
+
+Redact PDF (hide selected content)
+
+Compare PDF (highlight text differences)
+
+🔹 UI / UX Design
+
+Home page: 6 category cards (Organize, Convert, Edit, Security, etc.) with icons & animations.
+
+Each tool has a minimal layout with a clean white + blue or white + purple accent theme.
+
+Use progress bars, toasts, and loading animations during file processing.
+
+Include file history (localStorage) for recently used files.
+
+Provide light/dark mode toggle.
+
+🔹 Backend & Integrations
+
+Node + Express API endpoints for heavy operations (conversion, OCR).
+
+Integrate environment variables for API keys (CloudConvert, PDF.co).
+
+Add file upload/download endpoints.
+
+Ensure large file handling using Multer or similar middleware.
+
+Compress processed files before sending.
+
+🔹 Extra Features
+
+Detect file type automatically before processing.
+
+Cache frequently used tools locally.
+
+Support multiple languages (start with English).
+
+Include “Rate App” and “Share App” buttons.
+
+Implement optional AdMob placeholders (for later).
+
+🔹 Build Instructions
+
+Create the complete folder structure and install all dependencies automatically.
+
+Implement offline tools fully functional using local modules.
+
+For online tools, auto-detect internet and use APIs.
+
+Add a unified component for file handling (preview, rename, download).
+
+Build clean, minimal UI components for each section.
+
+Ensure all functions are tested and smooth.
+
+🔹 Output
+
+Full working project in /client and /server.
+
+All dependencies auto-installed.
+
+Runs locally with npm run dev and ready to deploy on Render.
+
+Include .env.example for API keys.
+
+README explaining features, modules used, and how to run locally or online.
+
+🎯 Goal
+
+Create a smooth, fast, user-friendly, all-in-one PDF management app that works both offline and online, performs most operations locally using modern libraries, and uses APIs for advanced conversions.
