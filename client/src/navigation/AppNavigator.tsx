@@ -10,8 +10,11 @@ import { SettingsScreen } from '../screens/SettingsScreen';
 import { CameraCaptureScreen } from '../screens/CameraCaptureScreen';
 import { ImageToPDFScreen } from '../screens/ImageToPDFScreen';
 import { MergePDFScreen } from '../screens/MergePDFScreen';
+import { SplitPDFScreen } from '../screens/SplitPDFScreen';
+import { RotatePDFScreen } from '../screens/RotatePDFScreen';
 import { CompressPDFScreen } from '../screens/CompressPDFScreen';
 import { ProtectPDFScreen } from '../screens/ProtectPDFScreen';
+import { PlaceholderScreen } from '../screens/PlaceholderScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -93,6 +96,16 @@ export function AppNavigator() {
         options={{ title: 'Merge PDFs' }}
       />
       <Stack.Screen 
+        name="SplitPDF" 
+        component={SplitPDFScreen}
+        options={{ title: 'Split PDF' }}
+      />
+      <Stack.Screen 
+        name="RotatePDF" 
+        component={RotatePDFScreen}
+        options={{ title: 'Rotate PDF' }}
+      />
+      <Stack.Screen 
         name="CompressPDF" 
         component={CompressPDFScreen}
         options={{ title: 'Compress PDF' }}
@@ -102,6 +115,36 @@ export function AppNavigator() {
         component={ProtectPDFScreen}
         options={{ title: 'Protect PDF' }}
       />
+      <Stack.Screen 
+        name="UnlockPDF"
+        options={{ title: 'Unlock PDF' }}
+      >
+        {() => <PlaceholderScreen title="Unlock PDF" description="Remove password from PDF" icon="lock-open" />}
+      </Stack.Screen>
+      <Stack.Screen 
+        name="WatermarkPDF"
+        options={{ title: 'Add Watermark' }}
+      >
+        {() => <PlaceholderScreen title="Add Watermark" description="Add text watermark to PDF" icon="water-drop" />}
+      </Stack.Screen>
+      <Stack.Screen 
+        name="PageNumbersPDF"
+        options={{ title: 'Add Page Numbers' }}
+      >
+        {() => <PlaceholderScreen title="Add Page Numbers" description="Number pages in PDF" icon="format-list-numbered" />}
+      </Stack.Screen>
+      <Stack.Screen 
+        name="PDFToImage"
+        options={{ title: 'PDF to Images' }}
+      >
+        {() => <PlaceholderScreen title="PDF to Images" description="Convert PDF pages to images" icon="image-multiple" />}
+      </Stack.Screen>
+      <Stack.Screen 
+        name="SignaturePDF"
+        options={{ title: 'Sign PDF' }}
+      >
+        {() => <PlaceholderScreen title="Sign PDF" description="Add signature to PDF" icon="draw" />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }

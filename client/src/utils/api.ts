@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const API_URL = __DEV__ ? 'http://localhost:5000/api' : 'https://your-production-url.com/api';
+import { API_URL, getFileUrl } from './config';
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -9,6 +8,19 @@ export const api = axios.create({
     'Content-Type': 'multipart/form-data',
   },
 });
+
+const normalizeResponse = (data: any) => {
+  if (data.url) {
+    data.url = getFileUrl(data.url);
+  }
+  if (data.files) {
+    data.files = data.files.map((f: any) => ({
+      ...f,
+      url: getFileUrl(f.url)
+    }));
+  }
+  return data;
+};
 
 export const mergePDFs = async (files: any[]) => {
   const formData = new FormData();
@@ -21,7 +33,7 @@ export const mergePDFs = async (files: any[]) => {
   });
 
   const response = await api.post('/pdf/merge', formData);
-  return response.data;
+  return normalizeResponse(response.data);
 };
 
 export const splitPDF = async (file: any, pageRanges: number[][]) => {
@@ -34,7 +46,7 @@ export const splitPDF = async (file: any, pageRanges: number[][]) => {
   formData.append('pageRanges', JSON.stringify(pageRanges));
 
   const response = await api.post('/pdf/split', formData);
-  return response.data;
+  return normalizeResponse(response.data);
 };
 
 export const rotatePDF = async (file: any, rotation: number, pages?: number[]) => {
@@ -50,7 +62,7 @@ export const rotatePDF = async (file: any, rotation: number, pages?: number[]) =
   }
 
   const response = await api.post('/pdf/rotate', formData);
-  return response.data;
+  return normalizeResponse(response.data);
 };
 
 export const compressPDF = async (file: any) => {
@@ -62,7 +74,7 @@ export const compressPDF = async (file: any) => {
   } as any);
 
   const response = await api.post('/pdf/compress', formData);
-  return response.data;
+  return normalizeResponse(response.data);
 };
 
 export const imagesToPDF = async (images: any[]) => {
@@ -79,7 +91,7 @@ export const imagesToPDF = async (images: any[]) => {
   });
 
   const response = await api.post('/pdf/images-to-pdf', formData);
-  return response.data;
+  return normalizeResponse(response.data);
 };
 
 export const protectPDF = async (file: any, password: string) => {
@@ -92,5 +104,5 @@ export const protectPDF = async (file: any, password: string) => {
   formData.append('password', password);
 
   const response = await api.post('/pdf/protect', formData);
-  return response.data;
+  return normalizeResponse(response.data);
 };
